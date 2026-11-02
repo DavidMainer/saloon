@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANEX SALON | Tokyo & New York Japanese Luxury Beauty & Spa</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            alabaster: '#FAF8F5',
+            cream: '#F4EFEA',
+            sand: '#E8DFD5',
+            sandstone: '#D4C4B5',
+            charcoal: '#22201E',
+            softcharcoal: '#3B3835',
+            gold: {
+              DEFAULT: '#C5A880',
+              light: '#DFCCA9',
+              dark: '#9F835A'
+            },
+            sage: '#A6B09E'
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom subtle scrollbar & delicate touch styling */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FAF8F5;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D4C4B5;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #C5A880;
+    }
+
+    .hero-bg {
+      background: linear-gradient(180deg, rgba(250, 248, 245, 0.3) 0%, rgba(250, 248, 245, 0.85) 85%, #FAF8F5 100%),
+                  url('https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+    }
+
+    .gold-border-gradient {
+      border-image: linear-gradient(to right, #DFCCA9, #C5A880, #DFCCA9) 1;
+    }
+  </style>
+</head>
+<body class="bg-alabaster text-charcoal font-sans antialiased selection:bg-gold-light selection:text-charcoal relative">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-softcharcoal text-[#EBE6E0] text-[11px] sm:text-xs py-2 px-4 text-center tracking-widest uppercase font-light border-b border-[#4A4642]">
+    <span>Authentic Japanese Artisanship &bull; Midtown Manhattan &bull; Complimentary Organic Hojicha Tea Service</span>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header id="main-header" class="sticky top-0 z-40 bg-alabaster/95 backdrop-blur-md transition-all duration-300 border-b border-sand/40">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="lg:hidden text-charcoal p-2 focus:outline-none" aria-label="Open Navigation">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+
+      <!-- Brand Logo -->
+      <a href="#" class="text-center group">
+        <span class="block font-serif text-2xl sm:text-3xl tracking-[0.28em] text-charcoal uppercase font-normal group-hover:text-gold-dark transition-colors">ANEX</span>
+        <span class="block text-[9px] sm:text-[10px] tracking-[0.35em] text-charcoal/60 uppercase font-sans mt-0.5">TOKYO &bull; NEW YORK</span>
+      </a>
+
+      <!-- Desktop Links -->
+      <nav class="hidden lg:flex items-center space-x-8 text-xs tracking-[0.2em] uppercase font-medium text-charcoal/80">
+        <a href="#services" class="hover:text-gold-dark transition-colors">Services</a>
+        <a href="#philosophy" class="hover:text-gold-dark transition-colors">Philosophy</a>
+        <a href="#headspa" class="hover:text-gold-dark transition-colors">Head Spa Ritual</a>
+        <a href="#artists" class="hover:text-gold-dark transition-colors">Artists</a>
+        <a href="#lookbook" class="hover:text-gold-dark transition-colors">Lookbook</a>
+        <a href="#location" class="hover:text-gold-dark transition-colors">Location</a>
+      </nav>
+
+      <!-- Action Button -->
+       <!-- Currency Switcher Dropdown -->
+      <select id="currency-selector" onchange="toggleCurrency(this.value)" class="bg-cream border border-sand text-charcoal text-xs px-3 py-1.5 rounded-full focus:outline-none focus:border-gold">
+        <option value="USD">USD ($)</option>
+         <option value="KSH" selected>KSh (KES)</option>
+      </select>
+      <div class="flex items-center space-x-4">
+        <button onclick="openBookingDrawer()" class="hidden sm:inline-flex items-center space-x-2 bg-charcoal text-alabaster text-xs tracking-widest uppercase px-5 py-2.5 rounded-full hover:bg-gold-dark transition-all duration-300 shadow-sm hover:shadow">
+          <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+          <span>Reserve</span>
+        </button>
+        <button onclick="openBookingDrawer()" class="sm:hidden text-charcoal p-2 rounded-full border border-sand bg-cream" aria-label="Book Appointment">
+          <i data-lucide="calendar" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-alabaster border-b border-sand px-6 py-6 space-y-4">
+      <nav class="flex flex-col space-y-3 text-sm tracking-widest uppercase text-charcoal/80">
+        <a href="#services" onclick="closeMobileMenu()" class="py-1 hover:text-gold-dark">Services & Pricing</a>
+        <a href="#philosophy" onclick="closeMobileMenu()" class="py-1 hover:text-gold-dark">Our Philosophy</a>
+        <a href="#headspa" onclick="closeMobileMenu()" class="py-1 hover:text-gold-dark">Japanese Head Spa</a>
+        <a href="#artists" onclick="closeMobileMenu()" class="py-1 hover:text-gold-dark">Master Artists</a>
+        <a href="#lookbook" onclick="closeMobileMenu()" class="py-1 hover:text-gold-dark">Lookbook Gallery</a>
+        <a href="#location" onclick="closeMobileMenu()" class="py-1 hover:text-gold-dark">Location & Hours</a>
+      </nav>
+      <div class="pt-4 border-t border-sand/60">
+        <button onclick="closeMobileMenu(); openBookingDrawer()" class="w-full bg-charcoal text-alabaster py-3 rounded-full uppercase tracking-widest text-xs font-medium hover:bg-gold-dark transition">
+          Book An Appointment
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-[90vh] flex items-center justify-center hero-bg px-6 py-20 text-center">
+    <div class="max-w-4xl mx-auto flex flex-col items-center">
+      <!-- Tag badge -->
+      <div class="inline-flex items-center space-x-2 border border-gold/40 px-4 py-1.5 rounded-full bg-alabaster/80 backdrop-blur-sm mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold"></span>
+        <span class="text-[11px] uppercase tracking-[0.25em] text-softcharcoal font-medium">The Art of Japanese Beauty & Omotenashi</span>
+      </div>
+
+      <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-light text-charcoal tracking-wide leading-[1.15] mb-6">
+        Graceful Precision.<br>
+        <span class="italic font-normal text-gold-dark">Tranquil Japanese Luxury.</span>
+      </h1>
+
+      <p class="text-softcharcoal/80 text-sm sm:text-base md:text-lg max-w-2xl font-light leading-relaxed mb-10">
+        Experience meticulous Tokyo-trained artistry in Manhattan. From organic gel nails and authentic Japanese scalp head spa therapy to weightless lash couture and restorative botanical facials.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
+        <button onclick="openBookingDrawer()" class="w-full sm:w-auto px-8 py-3.5 bg-charcoal text-alabaster rounded-full text-xs uppercase tracking-[0.22em] font-medium hover:bg-gold-dark hover:scale-[1.02] transition-all duration-300 shadow-md">
+          Reserve Your Sanctuary
+        </button>
+        <a href="#services" class="w-full sm:w-auto px-8 py-3.5 border border-charcoal/20 bg-alabaster/60 backdrop-blur-sm text-charcoal rounded-full text-xs uppercase tracking-[0.22em] font-medium hover:bg-sand/60 transition-all duration-300">
+          Explore Menu
+        </a>
+      </div>
+
+      <!-- Quick Experience Pillars -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mt-16 sm:mt-20 w-full pt-10 border-t border-sand/50">
+        <div class="p-3 text-center">
+          <p class="font-serif text-lg sm:text-xl text-charcoal">Japanese Gel Nails</p>
+          <p class="text-[11px] text-charcoal/60 uppercase tracking-wider mt-1">Non-damaging & durable</p>
+        </div>
+        <div class="p-3 text-center">
+          <p class="font-serif text-lg sm:text-xl text-charcoal">Organic Head Spa</p>
+          <p class="text-[11px] text-charcoal/60 uppercase tracking-wider mt-1">Micro-mist & acupressure</p>
+        </div>
+        <div class="p-3 text-center">
+          <p class="font-serif text-lg sm:text-xl text-charcoal">Eyelash Couture</p>
+          <p class="text-[11px] text-charcoal/60 uppercase tracking-wider mt-1">Featherlight silk sets</p>
+        </div>
+        <div class="p-3 text-center">
+          <p class="font-serif text-lg sm:text-xl text-charcoal">Omotenashi Care</p>
+          <p class="text-[11px] text-charcoal/60 uppercase tracking-wider mt-1">Heartfelt hospitality</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Brand Philosophy / Omotenashi Section -->
+  <section id="philosophy" class="py-24 px-6 sm:px-12 bg-cream/60">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <!-- Image Composition -->
+      <div class="lg:col-span-6 relative">
+        <div class="relative z-10 overflow-hidden rounded-2xl shadow-xl aspect-[4/5] bg-sand">
+          <img 
+            src="https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?auto=format&fit=crop&w=1200&q=80" 
+            alt="Japanese Minimalist Beauty Atmosphere" 
+            class="w-full h-full object-cover object-center transform hover:scale-105 transition-duration-700 transition ease-out"
+            loading="lazy"
+          >
+        </div>
+        <div class="hidden sm:block absolute -bottom-8 -right-8 w-48 h-48 bg-alabaster p-6 rounded-2xl shadow-lg border border-sand/70 z-20">
+          <span class="block font-serif text-4xl text-gold-dark mb-1">100%</span>
+          <span class="text-xs uppercase tracking-widest text-charcoal font-medium">Tokyo Certified Products & Techniques</span>
+        </div>
+      </div>
+
+      <!-- Text Philosophy -->
+      <div class="lg:col-span-6 space-y-6 lg:pl-6">
+        <div class="inline-flex items-center space-x-2 text-gold-dark">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span class="text-xs uppercase tracking-[0.25em] font-medium">Philosophy of Anex</span>
+        </div>
+
+        <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-charcoal leading-tight">
+          Mindful beauty nurtured by the spirit of <span class="italic text-gold-dark">Omotenashi</span>.
+        </h2>
+
+        <p class="text-softcharcoal/80 text-sm sm:text-base leading-relaxed font-light">
+          In Japanese tradition, beauty is neither rushed nor superficial. It is an expression of mindfulness, immaculate cleanliness, and reverence for each client’s individuality.
+        </p>
+
+        <p class="text-softcharcoal/80 text-sm sm:text-base leading-relaxed font-light">
+          At Anex Salon, our master practitioners are certified in Tokyo and Ginza techniques. We formulate our services exclusively with non-toxic, acetone-free nail gels, herbal botanicals, and high-performance scalp serums crafted in Japan.
+        </p>
+
+        <div class="grid grid-cols-2 gap-6 pt-4">
+          <div class="border-l-2 border-gold pl-4">
+            <h4 class="font-serif text-lg text-charcoal">Clean & Non-Toxic</h4>
+            <p class="text-xs text-softcharcoal/70 mt-1 font-light">Free from harsh chemical scents, protecting natural nails and hair integrity.</p>
+          </div>
+          <div class="border-l-2 border-gold pl-4">
+            <h4 class="font-serif text-lg text-charcoal">Unrushed Private Suites</h4>
+            <p class="text-xs text-softcharcoal/70 mt-1 font-light">A sanctuary sheltered from the bustle of Manhattan with serene acoustic design.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signature Spotlight: Japanese Head Spa Ritual -->
+  <section id="headspa" class="py-24 px-6 sm:px-12 bg-alabaster border-y border-sand/40">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs uppercase tracking-[0.25em] text-gold-dark font-medium block mb-2">Exclusive Holistic Treatment</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-light text-charcoal">The Signature Japanese Scalp Ritual</h2>
+        <p class="text-softcharcoal/70 text-sm mt-4 font-light">A multi-sensory restorative journey designed to unclog scalp pores, revitalize circulation, and relax the nervous system.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-cream/40 rounded-3xl p-6 sm:p-10 border border-sand/70">
+        <!-- Visual Presentation -->
+        <div class="lg:col-span-5 relative rounded-2xl overflow-hidden aspect-square sm:aspect-[4/5] bg-sand">
+          <img 
+            src="https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=1000&q=80" 
+            alt="Japanese Head Spa Treatment" 
+            class="w-full h-full object-cover"
+            loading="lazy"
+          >
+          <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent flex flex-col justify-end p-6 text-alabaster">
+            <span class="text-xs uppercase tracking-widest text-gold-light">Signature Experience</span>
+            <span class="font-serif text-2xl">Yume Bed Hydro-Massage</span>
+          </div>
+        </div>
+
+        <!-- Ritual Steps -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-alabaster transition-colors">
+            <div class="w-10 h-10 rounded-full bg-sand text-charcoal font-serif flex items-center justify-center shrink-0 text-lg">1</div>
+            <div>
+              <h4 class="font-serif text-xl text-charcoal">Micro-Camera Scalp Diagnostic</h4>
+              <p class="text-xs sm:text-sm text-softcharcoal/80 mt-1 font-light leading-relaxed">
+                We inspect your scalp density, sebum balance, and moisture level under a 200x microscopic lens to curate your botanical treatment oils.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-alabaster transition-colors">
+            <div class="w-10 h-10 rounded-full bg-sand text-charcoal font-serif flex items-center justify-center shrink-0 text-lg">2</div>
+            <div>
+              <h4 class="font-serif text-xl text-charcoal">Warm Carbonated Micro-Mist Cleanse</h4>
+              <p class="text-xs sm:text-sm text-softcharcoal/80 mt-1 font-light leading-relaxed">
+                Fine ultrasonic mist gently opens pores, melting away stubborn product residue, mineral deposits, and tension.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-alabaster transition-colors">
+            <div class="w-10 h-10 rounded-full bg-sand text-charcoal font-serif flex items-center justify-center shrink-0 text-lg">3</div>
+            <div>
+              <h4 class="font-serif text-xl text-charcoal">Shiatsu Pressure-Point Massage</h4>
+              <p class="text-xs sm:text-sm text-softcharcoal/80 mt-1 font-light leading-relaxed">
+                Targeting cranial tension points along the neck and shoulders to enhance lymphatic drainage and stimulate follicle growth.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-4 p-4 rounded-xl hover:bg-alabaster transition-colors">
+            <div class="w-10 h-10 rounded-full bg-sand text-charcoal font-serif flex items-center justify-center shrink-0 text-lg">4</div>
+            <div>
+              <h4 class="font-serif text-xl text-charcoal">Hydro-Waterfall Infusion & Botanical Seal</h4>
+              <p class="text-xs sm:text-sm text-softcharcoal/80 mt-1 font-light leading-relaxed">
+                Continuous heated herbal fountain bath followed by an organic camellia & yuzu collagen mask for lasting luster.
+              </p>
+            </div>
+          </div>
+
+          <div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-sand">
+            <div>
+              <span class="text-xs text-charcoal/60 uppercase tracking-widest block">Session Duration</span>
+              <span class="font-serif text-xl text-charcoal">75 - 90 Minutes &bull; from $195</span>
+            </div>
+            <button onclick="bookSpecificService('Signature Japanese Scalp Head Spa', 195, 'Head Spa & Hair')" class="w-full sm:w-auto px-6 py-2.5 bg-gold-dark text-alabaster rounded-full text-xs uppercase tracking-widest hover:bg-charcoal transition-all">
+              Book Head Spa
+             </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Menu / Price List -->
+  <section id="services" class="py-24 px-6 sm:px-12 bg-cream/30">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-xs uppercase tracking-[0.25em] text-gold-dark font-medium block mb-2">Curated Treatments</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-light text-charcoal">Services & Price Menu</h2>
+        <p class="text-softcharcoal/70 text-sm mt-3 font-light">Customized with imported Japanese gentle formulas and personalized consultations.</p>
+      </div>
+
+      <!-- Category Filter Tabs -->
+      <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
+        <button onclick="filterCategory('all', this)" class="category-btn px-5 py-2 rounded-full text-xs tracking-widest uppercase transition-all duration-300 bg-charcoal text-alabaster shadow-sm">
+          All Offerings
+         </button>
+        <button onclick="filterCategory('nails', this)" class="category-btn px-5 py-2 rounded-full text-xs tracking-widest uppercase transition-all duration-300 bg-alabaster border border-sand text-charcoal hover:border-gold">
+          Japanese Gel Nails
+        </button>
+        <button onclick="filterCategory('headspa', this)" class="category-btn px-5 py-2 rounded-full text-xs tracking-widest uppercase transition-all duration-300 bg-alabaster border border-sand text-charcoal hover:border-gold">
+          Head Spa & Hair
+        </button>
+        <button onclick="filterCategory('lashes', this)" class="category-btn px-5 py-2 rounded-full text-xs tracking-widest uppercase transition-all duration-300 bg-alabaster border border-sand text-charcoal hover:border-gold">
+          Eyelashes & Brows
+        </button>
+        <button onclick="filterCategory('facial', this)" class="category-btn px-5 py-2 rounded-full text-xs tracking-widest uppercase transition-all duration-300 bg-alabaster border border-sand text-charcoal hover:border-gold">
+          Facial & Skin Wellness
+        </button>
+      </div>
+
+      <!-- Services Grid -->
+      <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Rendered via JavaScript -->
+      </div>
+
+      <div class="mt-14 text-center bg-alabaster p-8 rounded-2xl border border-sand/60 max-w-2xl mx-auto shadow-sm">
+        <p class="font-serif text-xl text-charcoal mb-2">Custom Ombre & 3D Nail Art Inquiries</p>
+        <p class="text-xs text-softcharcoal/70 leading-relaxed font-light mb-4">
+          Have an inspiration picture from Tokyo Fashion Week or custom bridal motifs? Send our master nail artists an image during reservation for custom pricing.
+        </p>
+        <button onclick="openBookingDrawer()" class="text-xs uppercase tracking-widest font-medium text-gold-dark hover:text-charcoal underline underline-offset-4">
+          Reserve Custom Consultation &rarr;
+                </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Master Artists Section -->
+  <section id="artists" class="py-24 px-6 sm:px-12 bg-alabaster">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs uppercase tracking-[0.25em] text-gold-dark font-medium block mb-2">Our Craftsmen</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-light text-charcoal">The Master Artists</h2>
+        <p class="text-softcharcoal/70 text-sm mt-3 font-light">Each technician brings a minimum of 8 years of intensive training in Tokyo, Omotesando, and New York.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Artist 1 -->
+        <div class="group bg-cream/30 rounded-2xl p-6 border border-sand/50 text-center hover:shadow-lg transition-all duration-300">
+          <div class="w-36 h-36 mx-auto rounded-full overflow-hidden mb-5 border-2 border-sandstone group-hover:border-gold transition">
+            <img 
+              src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80" 
+              alt="Yuki Sato - Master Nail Artist" 
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              loading="lazy"
+            >
+          </div>
+          <span class="text-[11px] uppercase tracking-widest text-gold-dark font-medium block mb-1">Founder & Art Director</span>
+          <h3 class="font-serif text-2xl text-charcoal">Yuki Sato</h3>
+          <p class="text-xs text-softcharcoal/70 mt-2 font-light leading-relaxed">
+            14 years experience across Ginza & Manhattan. Renowned for delicate nuance marble designs and natural nail health preservation.
+          </p>
+          <button onclick="selectArtistAndBook('Yuki Sato')" class="mt-4 text-xs tracking-widest uppercase font-medium text-charcoal group-hover:text-gold-dark flex items-center justify-center mx-auto space-x-1">
+            <span>Book with Yuki</span>
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <!-- Artist 2 -->
+        <div class="group bg-cream/30 rounded-2xl p-6 border border-sand/50 text-center hover:shadow-lg transition-all duration-300">
+          <div class="w-36 h-36 mx-auto rounded-full overflow-hidden mb-5 border-2 border-sandstone group-hover:border-gold transition">
+            <img 
+              src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80" 
+              alt="Aoi Takahashi - Head Spa Specialist" 
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              loading="lazy"
+            >
+          </div>
+          <span class="text-[11px] uppercase tracking-widest text-gold-dark font-medium block mb-1">Certified Trichologist</span>
+          <h3 class="font-serif text-2xl text-charcoal">Aoi Takahashi</h3>
+          <p class="text-xs text-softcharcoal/70 mt-2 font-light leading-relaxed">
+            Specializes in cranial Shiatsu massage, botanical scalp detox treatments, and Japanese silk blowouts for unruly textures.
+          </p>
+          <button onclick="selectArtistAndBook('Aoi Takahashi')" class="mt-4 text-xs tracking-widest uppercase font-medium text-charcoal group-hover:text-gold-dark flex items-center justify-center mx-auto space-x-1">
+            <span>Book with Aoi</span>
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+
+        <!-- Artist 3 -->
+        <div class="group bg-cream/30 rounded-2xl p-6 border border-sand/50 text-center hover:shadow-lg transition-all duration-300 sm:col-span-2 lg:col-span-1 max-w-sm mx-auto sm:max-w-none">
+          <div class="w-36 h-36 mx-auto rounded-full overflow-hidden mb-5 border-2 border-sandstone group-hover:border-gold transition">
+            <img 
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" 
+              alt="Kenji Mori - Lash & Brow Sculptor" 
+              class="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+              loading="lazy"
+            >
+          </div>
+          <span class="text-[11px] uppercase tracking-widest text-gold-dark font-medium block mb-1">Lash Couture Specialist</span>
+          <h3 class="font-serif text-2xl text-charcoal">Kenji Mori</h3>
+          <p class="text-xs text-softcharcoal/70 mt-2 font-light leading-relaxed">
+            Trained in Shibuya. Celebrated for ultra-fine single-lash fan isolation, weightless retention, and Japanese keratin lash lifts.
+          </p>
+          <button onclick="selectArtistAndBook('Kenji Mori')" class="mt-4 text-xs tracking-widest uppercase font-medium text-charcoal group-hover:text-gold-dark flex items-center justify-center mx-auto space-x-1">
+            <span>Book with Kenji</span>
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lookbook / Gallery Grid -->
+  <section id="lookbook" class="py-24 px-6 sm:px-12 bg-cream/40 border-t border-sand/50">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="text-xs uppercase tracking-[0.25em] text-gold-dark font-medium block mb-2">Visual Portfolio</span>
+          <h2 class="font-serif text-3xl sm:text-5xl font-light text-charcoal">Curated Lookbook</h2>
+        </div>
+        <!-- Gallery Filter tags -->
+        <div class="flex flex-wrap gap-2 mt-6 md:mt-0">
+          <button onclick="filterGallery('all', this)" class="gallery-filter-btn px-4 py-1.5 rounded-full text-[11px] tracking-widest uppercase bg-charcoal text-alabaster">All</button>
+          <button onclick="filterGallery('nails', this)" class="gallery-filter-btn px-4 py-1.5 rounded-full text-[11px] tracking-widest uppercase bg-alabaster border border-sand text-charcoal">Nails</button>
+          <button onclick="filterGallery('spa', this)" class="gallery-filter-btn px-4 py-1.5 rounded-full text-[11px] tracking-widest uppercase bg-alabaster border border-sand text-charcoal">Head Spa</button>
+          <button onclick="filterGallery('lashes', this)" class="gallery-filter-btn px-4 py-1.5 rounded-full text-[11px] tracking-widest uppercase bg-alabaster border border-sand text-charcoal">Lashes</button>
+          <button onclick="filterGallery('interior', this)" class="gallery-filter-btn px-4 py-1.5 rounded-full text-[11px] tracking-widest uppercase bg-alabaster border border-sand text-charcoal">Sanctuary</button>
+        </div>
+      </div>
+
+      <!-- Photo Gallery Grid -->
+      <div id="gallery-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Client Reviews / Press Section -->
+  <section class="py-24 px-6 sm:px-12 bg-alabaster">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs uppercase tracking-[0.25em] text-gold-dark font-medium block mb-2">Guest Reflections</span>
+        <h2 class="font-serif text-3xl sm:text-5xl font-light text-charcoal">Kind Words & Endorsements</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Review 1 -->
+        <div class="bg-cream/40 p-8 rounded-2xl border border-sand/60 relative flex flex-col justify-between">
+          <div>
+            <div class="flex text-gold mb-4">
+              <i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+            </div>
+            <p class="font-serif text-lg text-charcoal italic leading-relaxed">
+              "Anex Salon feels like stepping straight into a private boutique in Aoyama, Tokyo. My Japanese gel nails lasted 5 weeks without lifting, and my natural nail underneath stayed completely healthy."
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-sand/50">
+            <p class="font-sans text-xs tracking-wider uppercase font-semibold text-charcoal">Elena Rostova</p>
+            <p class="text-[11px] text-charcoal/50">Vogue Features Contributor</p>
+          </div>
+        </div>
+
+        <!-- Review 2 -->
+        <div class="bg-cream/40 p-8 rounded-2xl border border-sand/60 relative flex flex-col justify-between">
+          <div>
+            <div class="flex text-gold mb-4">
+              <i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+            </div>
+            <p class="font-serif text-lg text-charcoal italic leading-relaxed">
+              "The head spa was life-changing. From the warm herbal water bath to the shoulder pressure massage, my chronic headaches dissolved. Worth every penny for NYC peace."
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-sand/50">
+            <p class="font-sans text-xs tracking-wider uppercase font-semibold text-charcoal">Claire DeWitt</p>
+            <p class="text-[11px] text-charcoal/50">Tribeca, New York</p>
+          </div>
+        </div>
+
+        <!-- Review 3 -->
+        <div class="bg-cream/40 p-8 rounded-2xl border border-sand/60 relative flex flex-col justify-between">
+          <div>
+            <div class="flex text-gold mb-4">
+              <i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+              <i data-lucide="star" class="w-4 h-4 fill-gold"></i>
+            </div>
+            <p class="font-serif text-lg text-charcoal italic leading-relaxed">
+              "Unrivaled gentle precision. No chemical smells, warm hojicha tea, and Kenji applied the most natural-looking silk lashes I've ever had. Truly pure Omotenashi hospitality."
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-sand/50">
+            <p class="font-sans text-xs tracking-wider uppercase font-semibold text-charcoal">Samantha Chang</p>
+            <p class="text-[11px] text-charcoal/50">Upper East Side</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Location & Hours Section -->
+  <section id="location" class="py-24 px-6 sm:px-12 bg-cream/70 border-t border-sand/60">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <!-- Address & Information -->
+      <div class="lg:col-span-5 space-y-6">
+        <span class="text-xs uppercase tracking-[0.25em] text-gold-dark font-medium block">Visit Our Sanctuary</span>
+        <h2 class="font-serif text-3xl sm:text-4xl text-charcoal font-light">Midtown Manhattan</h2>
+        <p class="text-softcharcoal/80 text-sm font-light leading-relaxed">
+          Tucked away on a tranquil, discreet upper floor near Bryant Park and Fifth Avenue, Anex Salon offers complete respite from the city's pulse.
+        </p>
+
+        <div class="space-y-4 pt-4 border-t border-sand">
+          <div class="flex items-start space-x-3">
+            <i data-lucide="map-pin" class="w-5 h-5 text-gold-dark shrink-0 mt-0.5"></i>
+            <div class="text-sm">
+              <p class="font-medium text-charcoal">Anex Salon New York</p>
+              <p class="text-softcharcoal/70 font-light">545 5th Avenue, Suite 810<br>New York, NY 10017</p>
+              <p class="text-[11px] text-charcoal/50 mt-1">(Near Grand Central & Bryant Park)</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-3">
+            <i data-lucide="clock" class="w-5 h-5 text-gold-dark shrink-0 mt-0.5"></i>
+            <div class="text-sm">
+              <p class="font-medium text-charcoal">Opening Hours</p>
+              <p class="text-softcharcoal/70 font-light">Tuesday – Saturday: 10:00 AM – 7:30 PM</p>
+              <p class="text-softcharcoal/70 font-light">Sunday: 11:00 AM – 6:00 PM</p>
+              <p class="text-xs text-charcoal/50 italic mt-0.5">Closed Mondays</p>
+            </div>
+          </div>
+
+          <div class="flex items-start space-x-3">
+            <i data-lucide="phone" class="w-5 h-5 text-gold-dark shrink-0 mt-0.5"></i>
+            <div class="text-sm">
+              <p class="font-medium text-charcoal">Concierge & Inquiries</p>
+              <p class="text-softcharcoal/70 font-light">+1 (212) 840-2918</p>
+              <p class="text-softcharcoal/70 font-light">concierge@anexsalon-ny.com</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 bg-alabaster rounded-xl border border-sand/70 text-xs text-softcharcoal/70 font-light">
+          <span class="font-semibold text-charcoal block mb-1">Cancellation Courtesy</span>
+          We reserve dedicated suites and master artists for your appointment. Please provide at least 24 hours notice for schedule adjustments.
+        </div>
+      </div>
+
+      <!-- Interactive Map & Visual Card -->
+      <div class="lg:col-span-7 flex flex-col justify-between">
+        
+        <!-- Newsletter Subscription -->
+        <div class="mt-8 bg-alabaster p-6 rounded-2xl border border-sand/70">
+          <p class="font-serif text-lg text-charcoal">The Anex Seasonal Journal</p>
+          <p class="text-xs text-softcharcoal/70 font-light mb-4">Receive invitations to Tokyo guest-master workshops, seasonal seasonal nail collections, and wellness notes.</p>
+          <form onsubmit="handleNewsletter(event)" class="flex flex-col sm:flex-row gap-2">
+            <input 
+              type="email" 
+              required
+              id="newsletter-email"
+              placeholder="Your email address" 
+              class="px-4 py-2.5 rounded-full bg-cream border border-sand text-xs text-charcoal placeholder-charcoal/40 focus:outline-none focus:border-gold flex-1"
+            >
+            <button type="submit" class="px-6 py-2.5 bg-charcoal text-alabaster rounded-full text-xs uppercase tracking-widest hover:bg-gold-dark transition">
+              Subscribe
+            </button>
+          </form>
+          <p id="newsletter-msg" class="text-[11px] text-gold-dark mt-2 hidden">Arigato gozaimasu. You have been added to our private guest list.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-charcoal text-alabaster py-16 px-6 sm:px-12 border-t border-softcharcoal">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+      <div>
+        <span class="block font-serif text-2xl tracking-[0.25em] uppercase">ANEX SALON</span>
+        <span class="block text-[10px] tracking-[0.35em] text-sandstone uppercase mt-1">Japanese Luxury Beauty & Spa &bull; Tokyo &bull; New York</span>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-6 text-xs uppercase tracking-widest text-sandstone">
+        <a href="#services" class="hover:text-gold-light transition">Services</a>
+        <a href="#headspa" class="hover:text-gold-light transition">Head Spa</a>
+        <a href="#lookbook" class="hover:text-gold-light transition">Lookbook</a>
+        <a href="#location" class="hover:text-gold-light transition">Hours & Location</a>
+        <a href="#" onclick="openBookingDrawer(); return false;" class="hover:text-gold-light transition">Book Online</a>
+      </div>
+
+      <div class="text-xs text-sandstone/60 font-light">
+        &copy; 2026 Anex Salon New York. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal for Gallery -->
+  <div id="lightbox-modal" class="fixed inset-0 z-50 bg-charcoal/90 backdrop-blur-md hidden items-center justify-center p-4">
+    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-alabaster hover:text-gold transition p-2">
+      <i data-lucide="x" class="w-8 h-8"></i>
+    </button>
+    <div class="max-w-4xl max-h-[85vh] flex flex-col items-center">
+      <img id="lightbox-img" src="" alt="Gallery Preview" class="max-w-full max-h-[75vh] object-contain rounded-xl shadow-2xl">
+      <p id="lightbox-caption" class="text-alabaster font-serif text-lg mt-4 tracking-wide text-center"></p>
+    </div>
+  </div>
+
+  <!-- Interactive Booking Drawer / Modal -->
+  <div id="booking-drawer" class="fixed inset-0 z-50 bg-charcoal/60 backdrop-blur-sm hidden transition-opacity duration-300">
+    <div class="fixed inset-y-0 right-0 max-w-full w-full sm:max-w-xl bg-alabaster shadow-2xl flex flex-col overflow-y-auto">
+      
+      <!-- Drawer Header -->
+      <div class="p-6 border-b border-sand flex items-center justify-between sticky top-0 bg-alabaster/95 backdrop-blur-sm z-10">
+        <div>
+          <span class="text-[10px] uppercase tracking-[0.25em] text-gold-dark font-medium block">Omotenashi Reservation</span>
+          <h3 class="font-serif text-2xl text-charcoal">Reserve Your Experience</h3>
+        </div>
+        <button onclick="closeBookingDrawer()" class="text-charcoal/60 hover:text-charcoal p-2 rounded-full hover:bg-cream transition">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <!-- Drawer Content Steps -->
+      <div class="p-6 sm:p-8 flex-1 space-y-8">
+        
+        <!-- Step 1: Service Selection -->
+        <div>
+          <label class="block text-xs uppercase tracking-widest text-charcoal font-semibold mb-2">
+            1. Select Your Treatment
+          </label>
+          <select id="booking-service" onchange="updateBookingEstimate()" class="w-full px-4 py-3 rounded-xl bg-cream border border-sand text-sm text-charcoal focus:outline-none focus:border-gold">
+            <option value="" disabled selected>Choose a signature service...</option>
+            <optgroup label="Japanese Gel Nails">
+              <option value="Signature Japanese Calgel Manicure|95|Japanese Gel Nails">Signature Japanese Calgel Manicure — $95 (60 min)</option>
+              <option value="Tokyo Nuance & Gradient Art Manicure|140|Japanese Gel Nails">Tokyo Nuance & Gradient Art Manicure — $140 (90 min)</option>
+              <option value="Bespoke Couture 3D Nail Art Set|185|Japanese Gel Nails">Bespoke Couture 3D Nail Art Set — $185 (120 min)</option>
+              <option value="Organic Japanese Spa Pedicure|110|Japanese Gel Nails">Organic Japanese Spa Pedicure — $110 (60 min)</option>
+            </optgroup>
+            <optgroup label="Japanese Head Spa & Hair">
+              <option value="Signature Japanese Scalp Head Spa|195|Head Spa & Hair">Signature Japanese Scalp Head Spa — $195 (75 min)</option>
+              <option value="Aromatherapy Scalp Detox & Hydro Bath|240|Head Spa & Hair">Aromatherapy Scalp Detox & Hydro Bath — $240 (90 min)</option>
+              <option value="Japanese Silk Protein Blowout|90|Head Spa & Hair">Japanese Silk Protein Blowout — $90 (50 min)</option>
+            </optgroup>
+            <optgroup label="Eyelashes & Brows">
+              <option value="Featherlight Japanese Silk Lash Set|175|Eyelashes & Brows">Featherlight Japanese Silk Lash Set — $175 (90 min)</option>
+              <option value="Tokyo Lash Lift & Organic Keratin Tint|125|Eyelashes & Brows">Tokyo Lash Lift & Organic Keratin Tint — $125 (60 min)</option>
+              <option value="Japanese Brow Architecture & Lamination|110|Eyelashes & Brows">Japanese Brow Architecture & Lamination — $110 (55 min)</option>
+            </optgroup>
+            <optgroup label="Facial & Skin Wellness">
+              <option value="Sake Rice & Green Tea Antioxidant Facial|180|Facial Wellness">Sake Rice & Green Tea Antioxidant Facial — $180 (70 min)</option>
+              <option value="Lymphatic Lifting & Gua Sha Sculpting Facial|210|Facial Wellness">Lymphatic Lifting & Gua Sha Sculpting Facial — $210 (80 min)</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <!-- Step 2: Specialist Choice -->
+        <div>
+          <label class="block text-xs uppercase tracking-widest text-charcoal font-semibold mb-2">
+            2. Preferred Master Specialist
+          </label>
+          <div class="grid grid-cols-2 gap-3" id="specialist-options">
+            <button type="button" onclick="selectSpecialist('Any Available Artist', this)" class="spec-btn p-3 rounded-xl border border-gold bg-cream text-left text-xs transition">
+              <span class="font-medium block text-charcoal">First Available</span>
+              <span class="text-[10px] text-charcoal/60">Tokyo-certified team</span>
+            </button>
+            <button type="button" onclick="selectSpecialist('Yuki Sato (Nails Director)', this)" class="spec-btn p-3 rounded-xl border border-sand bg-alabaster text-left text-xs transition hover:border-gold">
+              <span class="font-medium block text-charcoal">Yuki Sato</span>
+              <span class="text-[10px] text-charcoal/60">Nail Art Director</span>
+            </button>
+            <button type="button" onclick="selectSpecialist('Aoi Takahashi (Head Spa)', this)" class="spec-btn p-3 rounded-xl border border-sand bg-alabaster text-left text-xs transition hover:border-gold">
+              <span class="font-medium block text-charcoal">Aoi Takahashi</span>
+              <span class="text-[10px] text-charcoal/60">Head Spa Specialist</span>
+            </button>
+            <button type="button" onclick="selectSpecialist('Kenji Mori (Lashes & Brows)', this)" class="spec-btn p-3 rounded-xl border border-sand bg-alabaster text-left text-xs transition hover:border-gold">
+              <span class="font-medium block text-charcoal">Kenji Mori</span>
+              <span class="text-[10px] text-charcoal/60">Lash & Brow Master</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Date & Preferred Time -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs uppercase tracking-widest text-charcoal font-semibold mb-2">
+              3. Desired Date
+            </label>
+            <input type="date" id="booking-date" class="w-full px-4 py-2.5 rounded-xl bg-cream border border-sand text-xs text-charcoal focus:outline-none focus:border-gold">
+          </div>
+          <div>
+            <label class="block text-xs uppercase tracking-widest text-charcoal font-semibold mb-2">
+              Preferred Time
+            </label>
+            <select id="booking-time" class="w-full px-4 py-2.5 rounded-xl bg-cream border border-sand text-xs text-charcoal focus:outline-none focus:border-gold">
+              <option value="10:00 AM">10:00 AM</option>
+              <option value="11:30 AM">11:30 AM</option>
+              <option value="1:00 PM">1:00 PM</option>
+              <option value="2:30 PM">2:30 PM</option>
+              <option value="4:00 PM">4:00 PM</option>
+              <option value="5:30 PM">5:30 PM</option>
+              <option value="6:30 PM">6:30 PM</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Step 4: Guest Contact Details -->
+        <div class="space-y-3">
+          <label class="block text-xs uppercase tracking-widest text-charcoal font-semibold">
+            4. Guest Information
+          </label>
+          <input type="text" id="guest-name" placeholder="Full Name" class="w-full px-4 py-2.5 rounded-xl bg-cream border border-sand text-xs text-charcoal focus:outline-none focus:border-gold">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <input type="email" id="guest-email" placeholder="Email Address" class="w-full px-4 py-2.5 rounded-xl bg-cream border border-sand text-xs text-charcoal focus:outline-none focus:border-gold">
+            <input type="tel" id="guest-phone" placeholder="Phone Number" class="w-full px-4 py-2.5 rounded-xl bg-cream border border-sand text-xs text-charcoal focus:outline-none focus:border-gold">
+          </div>
+          <textarea id="guest-notes" rows="2" placeholder="Custom nail art requests, sensitivities, or beverage preferences (Green Tea / Hojicha / Sparkling Water)" class="w-full px-4 py-2 rounded-xl bg-cream border border-sand text-xs text-charcoal focus:outline-none focus:border-gold"></textarea>
+        </div>
+
+        <!-- Booking Live Summary Box -->
+        <div class="bg-cream/60 p-5 rounded-2xl border border-sand space-y-2 text-xs">
+          <div class="flex justify-between text-charcoal">
+            <span class="text-charcoal/60">Estimated Service Fee:</span>
+            <span id="summary-price" class="font-serif text-lg font-semibold">$0</span>
+          </div>
+          <div class="flex justify-between text-charcoal/60 text-[11px]">
+            <span>Complimentary Amenities:</span>
+            <span>Organic Tea & Aromatherapy</span>
+          </div>
+          <p class="text-[10px] text-charcoal/50 pt-2 border-t border-sand/50">
+            *No immediate deposit required. Payment will be processed after your tranquil session at Anex Salon.
+          </p>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="button" onclick="confirmBooking()" class="w-full py-4 bg-charcoal text-alabaster rounded-full text-xs uppercase tracking-[0.2em] font-medium hover:bg-gold-dark transition shadow-md">
+          Complete Reservation
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reservation Confirmation Modal Overlay -->
+  <div id="confirmation-modal" class="fixed inset-0 z-50 bg-charcoal/80 backdrop-blur-md hidden items-center justify-center p-6">
+    <div class="bg-alabaster max-w-md w-full rounded-3xl p-8 border border-sand text-center shadow-2xl relative">
+      <div class="w-14 h-14 bg-cream rounded-full flex items-center justify-center mx-auto mb-5 text-gold-dark border border-gold/40">
+        <i data-lucide="check" class="w-7 h-7"></i>
+      </div>
+      <span class="text-xs uppercase tracking-widest text-gold-dark font-medium block mb-1">Reservation Confirmed</span>
+      <h3 class="font-serif text-3xl text-charcoal mb-3">We look forward to welcoming you.</h3>
+      <p id="confirmation-details" class="text-xs text-softcharcoal/80 leading-relaxed font-light mb-6">
+        A formal itinerary and salon arrival instructions have been noted. Please arrive 10 minutes early to savor your welcoming tea ceremony.
+      </p>
+      <button onclick="closeConfirmation()" class="px-8 py-3 bg-charcoal text-alabaster rounded-full text-xs uppercase tracking-widest font-medium hover:bg-gold-dark transition">
+        Return to Salon
+      </button>
+    </div>
+  </div>
+
+  <!-- Client-side Logic -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Today date default for picker
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('booking-date').value = today;
+
+    // Services Catalog Data
+    const services = [
+      {
+        id: 'nail-1',
+        category: 'nails',
+        name: 'Signature Japanese Calgel Manicure',
+        duration: '60 min',
+        price: 95,
+        desc: 'Gentle waterless Russian-Japanese cuticle technique, zero-damage Japanese Calgel application, organic botanical cuticle oil treatment.'
+      },
+      {
+        id: 'nail-2',
+        category: 'nails',
+        name: 'Tokyo Nuance & Gradient Art Manicure',
+        duration: '90 min',
+        price: 140,
+        desc: 'Subtle watercolor marbling, delicate champagne gold foil, mirror chrome dust, or Tokyo milky gradation on all fingers.'
+      },
+      {
+        id: 'nail-3',
+        category: 'nails',
+        name: 'Bespoke Couture 3D Nail Art Set',
+        duration: '120 min',
+        price: 185,
+        desc: 'Hand-sculpted 3D relief florals, hand-painted Japanese anime motifs, Swarovski crystals, and custom textured accents.'
+      },
+      {
+        id: 'nail-4',
+        category: 'nails',
+        name: 'Organic Japanese Spa Pedicure',
+        duration: '60 min',
+        price: 110,
+        desc: 'Hinoki cypress wood foot bath, exfoliating yuzu salt scrub, gentle heel smoothing, Japanese gel finish with acupressure foot massage.'
+      },
+      {
+        id: 'spa-1',
+        category: 'headspa',
+        name: 'Signature Japanese Scalp Head Spa',
+        duration: '75 min',
+        price: 195,
+        desc: 'Deep camera diagnostic, ultrasonic carbonated micro-mist cleanse, Shiatsu pressure massage, and hydro-waterfall herbal rinse.'
+      },
+      {
+        id: 'spa-2',
+        category: 'headspa',
+        name: 'Aromatherapy Scalp Detox & Hydro Bath',
+        duration: '90 min',
+        price: 240,
+        desc: 'Deep restorative treatment featuring Kyoto green tea scalp scrub, prolonged hot steam waterfall, shoulder neck release, and scalp tonic.'
+      },
+      {
+        id: 'spa-3',
+        category: 'headspa',
+        name: 'Japanese Silk Protein Blowout',
+        duration: '50 min',
+        price: 90,
+        desc: 'Infusion of Japanese hydrolyzed silk and camellia oil, finished with a glass-like polished blowout.'
+      },
+      {
+        id: 'lash-1',
+        category: 'lashes',
+        name: 'Featherlight Japanese Silk Lash Set',
+        duration: '90 min',
+        price: 175,
+        desc: 'Weightless Japanese synthetic silk applied 1:1 onto individual lashes. Custom curl mapping for a refined natural lift.'
+      },
+      {
+        id: 'lash-2',
+        category: 'lashes',
+        name: 'Tokyo Lash Lift & Organic Keratin Tint',
+        duration: '60 min',
+        price: 125,
+        desc: 'Gentle, formaldehyde-free Japanese lifting solution infused with vegetable keratin. Lasts 6 to 8 weeks.'
+      },
+      {
+        id: 'lash-3',
+        category: 'lashes',
+        name: 'Japanese Brow Architecture & Lamination',
+        duration: '55 min',
+        price: 110,
+        desc: 'Precision tweezing, Japanese nourishing lamination, and bespoke herbal tinting for natural, feather-soft brow shapes.'
+      },
+      {
+        id: 'facial-1',
+        category: 'facial',
+        name: 'Sake Rice & Green Tea Antioxidant Facial',
+        duration: '70 min',
+        price: 180,
+        desc: 'Enzymatic rice bran polish, double cleansing, fermented sake essence infusion, and calming matcha hydro-jelly mask.'
+      },
+      {
+        id: 'facial-2',
+        category: 'facial',
+        name: 'Lymphatic Lifting & Gua Sha Sculpting Facial',
+        duration: '80 min',
+        price: 210,
+        desc: 'Acupoint facial Shiatsu, Bian stone contour sculpting, pure squalane nourishment, and cellular collagen recovery.'
+      }
+    ];
+
+    // Lookbook Gallery Data
+    const galleryItems = [
+      {
+        category: 'nails',
+        title: 'Milky White Gradation with Champagne Foil',
+        img: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        category: 'interior',
+        title: 'Private Treatment Suite with Hinoki Accents',
+        img: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        category: 'spa',
+        title: 'Heated Hydro-Waterfall Scalp Bath',
+        img: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        category: 'lashes',
+        title: 'Featherlight Japanese Silk Isolation',
+        img: 'https://images.unsplash.com/photo-1583001931096-959e9a1a6223?auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        category: 'nails',
+        title: 'Tokyo Nuance Amber Stone Nails',
+        img: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        category: 'spa',
+        title: 'Shiatsu Head & Shoulder Pressure Massage',
+        img: 'https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        category: 'interior',
+        title: 'Welcoming Tea Corner & Kyoto Ceramic Ware',
+        img: 'https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?auto=format&fit=crop&w=800&q=80'
+      },
+      {
+        category: 'nails',
+        title: 'Minimalist Japanese 3D Waterdrop Detail',
+        img: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80'
+      }
+    ];
+
+    let selectedSpecialistName = 'Any Available Artist';
+
+    // Render Services
+    function renderServices(items) {
+  const container = document.getElementById('services-grid');
+  container.innerHTML = '';
+  items.forEach(svc => {
+    const card = document.createElement('div');
+    card.className = "bg-alabaster p-6 sm:p-7 rounded-2xl border border-sand/70 flex flex-col justify-between hover:shadow-md transition-shadow group";
+    card.innerHTML = `
+      <div>
+        <div class="flex items-start justify-between gap-4 mb-2">
+          <h3 class="font-serif text-xl sm:text-2xl text-charcoal font-normal group-hover:text-gold-dark transition-colors">${svc.name}</h3>
+          <!-- Dynamic Currency Price -->
+          <span class="font-serif text-xl sm:text-2xl text-charcoal font-medium shrink-0">${formatPrice(svc.price)}</span>
+        </div>
+        <span class="inline-block text-[11px] uppercase tracking-widest text-gold-dark font-medium mb-3">${svc.duration}</span>
+        <p class="text-xs sm:text-sm text-softcharcoal/70 leading-relaxed font-light">${svc.desc}</p>
+      </div>
+      <div class="pt-6 mt-6 border-t border-sand/40 flex items-center justify-between">
+        <span class="text-[11px] text-charcoal/50 uppercase tracking-widest">Tokyo Technique</span>
+        <button onclick="bookSpecificService('${svc.name}', ${svc.price}, '${svc.category}')" class="px-4 py-1.5 rounded-full border border-charcoal/20 text-xs uppercase tracking-wider hover:bg-charcoal hover:text-alabaster transition duration-200">
+          Select
+        </button>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+    // Filter Service Categories
+    function filterCategory(cat, btn) {
+      // update buttons style
+      document.querySelectorAll('.category-btn').forEach(b => {
+        b.className = "category-btn px-5 py-2 rounded-full text-xs tracking-widest uppercase transition-all duration-300 bg-alabaster border border-sand text-charcoal hover:border-gold";
+      });
+      btn.className = "category-btn px-5 py-2 rounded-full text-xs tracking-widest uppercase transition-all duration-300 bg-charcoal text-alabaster shadow-sm";
+
+      if (cat === 'all') {
+        renderServices(services);
+      } else {
+        const filtered = services.filter(s => s.category === cat);
+        renderServices(filtered);
+      }
+    }
+
+    // Render Gallery
+    function renderGallery(items) {
+      const container = document.getElementById('gallery-container');
+      container.innerHTML = '';
+      items.forEach((item, index) => {
+        const div = document.createElement('div');
+        div.className = "group relative aspect-square rounded-2xl overflow-hidden bg-sand cursor-pointer shadow-sm";
+        div.onclick = () => openLightbox(item.img, item.title);
+        div.innerHTML = `
+          <img src="${item.img}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700 ease-out" loading="lazy">
+          <div class="absolute inset-0 bg-charcoal/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4 text-alabaster">
+            <span class="text-[10px] uppercase tracking-widest text-gold-light">${item.category}</span>
+            <p class="font-serif text-sm leading-tight">${item.title}</p>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    // Filter Gallery
+    function filterGallery(cat, btn) {
+      document.querySelectorAll('.gallery-filter-btn').forEach(b => {
+        b.className = "gallery-filter-btn px-4 py-1.5 rounded-full text-[11px] tracking-widest uppercase bg-alabaster border border-sand text-charcoal";
+      });
+      btn.className = "gallery-filter-btn px-4 py-1.5 rounded-full text-[11px] tracking-widest uppercase bg-charcoal text-alabaster";
+
+      if (cat === 'all') {
+        renderGallery(galleryItems);
+      } else {
+        const filtered = galleryItems.filter(g => g.category === cat);
+        renderGallery(filtered);
+      }
+    }
+
+    // Booking Drawer Controls
+    function openBookingDrawer() {
+      document.getElementById('booking-drawer').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      updateBookingEstimate();
+    }
+
+    function closeBookingDrawer() {
+      document.getElementById('booking-drawer').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // Select specific service directly into booking drawer
+    function bookSpecificService(name, price, category) {
+      openBookingDrawer();
+      const select = document.getElementById('booking-service');
+      for (let i = 0; i < select.options.length; i++) {
+        if (select.options[i].value.includes(name)) {
+          select.selectedIndex = i;
+          break;
+        }
+      }
+      updateBookingEstimate();
+    }
+
+    // Specialist Selector
+    function selectSpecialist(name, btn) {
+      selectedSpecialistName = name;
+      document.querySelectorAll('.spec-btn').forEach(b => {
+        b.className = "spec-btn p-3 rounded-xl border border-sand bg-alabaster text-left text-xs transition hover:border-gold";
+      });
+      btn.className = "spec-btn p-3 rounded-xl border border-gold bg-cream text-left text-xs transition";
+    }
+
+    function selectArtistAndBook(artistName) {
+      openBookingDrawer();
+      selectedSpecialistName = artistName;
+      document.querySelectorAll('.spec-btn').forEach(b => {
+        if (b.innerText.includes(artistName)) {
+          b.className = "spec-btn p-3 rounded-xl border border-gold bg-cream text-left text-xs transition";
+        } else {
+          b.className = "spec-btn p-3 rounded-xl border border-sand bg-alabaster text-left text-xs transition hover:border-gold";
+        }
+      });
+    }
+
+    // Update Estimate in Drawer
+    function updateBookingEstimate() {
+      const select = document.getElementById('booking-service');
+      const summaryPrice = document.getElementById('summary-price');
+      if (select.value) {
+        const parts = select.value.split('|');
+        summaryPrice.textContent = `$${parts[1]}`;
+      } else {
+        summaryPrice.textContent = '$0';
+      }
+    }
+
+    // Confirm Booking
+    function confirmBooking() {
+  const serviceVal = document.getElementById('booking-service').value;
+  const guestName = document.getElementById('guest-name').value.trim();
+  const guestEmail = document.getElementById('guest-email').value.trim();
+  const guestPhone = document.getElementById('guest-phone').value.trim();
+  const dateVal = document.getElementById('booking-date').value;
+  const timeVal = document.getElementById('booking-time').value;
+  const notesVal = document.getElementById('guest-notes').value.trim();
+
+  if (!serviceVal) {
+    alertServicePrompt("Please select a treatment service.");
+    return;
+  }
+  if (!guestName) {
+    alertServicePrompt("Please provide your name for the guest register.");
+    return;
+  }
+
+  const serviceParts = serviceVal.split('|');
+  const serviceName = serviceParts[0];
+  const servicePrice = Number(serviceParts[1]);
+
+  // Create new appointment object
+  const newAppointment = {
+    id: 'apt-' + Date.now().toString().slice(-4),
+    guestName: guestName,
+    phone: guestPhone || 'N/A',
+    email: guestEmail || 'concierge@anexsalon-ny.com',
+    service: serviceName,
+    specialist: selectedSpecialistName || 'Any Available Artist',
+    price: servicePrice,
+    date: dateVal,
+    time: timeVal,
+    status: 'Confirmed',
+    notes: notesVal || 'Booked online via main site'
+  };
+
+  // Save to shared localStorage
+  const STORAGE_KEY_APPTS = 'anex_salon_appointments_v1';
+  let existingAppts = JSON.parse(localStorage.getItem(STORAGE_KEY_APPTS)) || [];
+  existingAppts.unshift(newAppointment);
+  localStorage.setItem(STORAGE_KEY_APPTS, JSON.stringify(existingAppts));
+
+  // Display confirmation modal
+  const summaryText = `Dear ${guestName}, your appointment for "${serviceName}" with ${selectedSpecialistName} on ${dateVal} at ${timeVal} is reserved. We will prepare your suite.`;
+  document.getElementById('confirmation-details').textContent = summaryText;
+  closeBookingDrawer();
+  document.getElementById('confirmation-modal').classList.remove('hidden');
+  document.getElementById('confirmation-modal').classList.add('flex');
+}
+    function closeConfirmation() {
+      document.getElementById('confirmation-modal').classList.add('hidden');
+      document.getElementById('confirmation-modal').classList.remove('flex');
+      // Reset form
+      document.getElementById('guest-name').value = '';
+      document.getElementById('guest-email').value = '';
+      document.getElementById('guest-phone').value = '';
+      document.getElementById('guest-notes').value = '';
+    }
+
+    function alertServicePrompt(msg) {
+      // In-page feedback without standard alert popup
+      const summaryPrice = document.getElementById('summary-price');
+      summaryPrice.textContent = msg;
+      summaryPrice.classList.add('text-rose-700');
+      setTimeout(() => {
+        summaryPrice.classList.remove('text-rose-700');
+        updateBookingEstimate();
+      }, 3000);
+    }
+
+    // Lightbox Controls
+    function openLightbox(imgSrc, caption) {
+      const modal = document.getElementById('lightbox-modal');
+      document.getElementById('lightbox-img').src = imgSrc;
+      document.getElementById('lightbox-caption').textContent = caption;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeLightbox() {
+      const modal = document.getElementById('lightbox-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // Mobile Menu Controls
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.add('hidden');
+    }
+
+    // Newsletter feedback
+    function handleNewsletter(e) {
+      e.preventDefault();
+      const email = document.getElementById('newsletter-email').value;
+      if(email) {
+        document.getElementById('newsletter-msg').classList.remove('hidden');
+        document.getElementById('newsletter-email').value = '';
+      }
+    }
+
+    // Initial render
+    window.onload = function () {
+      renderServices(services);
+      renderGallery(galleryItems);
+    };
+    // Exchange rate (1 USD = ~130 KSh)
+let EXCHANGE_RATE_KSH = 130; 
+let currentCurrency = 'KSH'; // Default currency set to KSh
+
+// Helper function to format prices dynamically
+function formatPrice(amountInUSD) {
+  if (currentCurrency === 'KSH') {
+    const kshAmount = Math.round(amountInUSD * EXCHANGE_RATE_KSH);
+    return `KSh ${kshAmount.toLocaleString()}`;
+  }
+  return `$${amountInUSD}`;
+}
+
+// Currency switch event handler
+function toggleCurrency(newCurrency) {
+  currentCurrency = newCurrency;
+  
+  // Re-render services and update live prices across the page
+  if (typeof renderServices === 'function') {
+    renderServices(services);
+  }
+  if (typeof updateBookingEstimate === 'function') {
+    updateBookingEstimate();
+  }
+}
+  </script>
+</body>
+</html> 
